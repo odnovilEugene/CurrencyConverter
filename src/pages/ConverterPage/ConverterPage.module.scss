@@ -7,15 +7,24 @@
   justify-content: center;
 
   .inner {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 50px;
+    display: grid;
+    grid-template-areas:
+    "converter converter"
+    "costs history";
 
     .converter {
-      width: 100%;
-      height: 50%;
+      grid-area: converter;
+    }
+
+    .costs {
+      grid-area: costs;
+    }
+
+    .history {
+      grid-area: history;
     }
   }
 }
