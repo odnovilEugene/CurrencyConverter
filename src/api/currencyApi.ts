@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Currency} from "@/type/Currency.ts";
+import {Currency} from "@/types/Currency.ts";
 
 const apiKey: string | undefined = import.meta.env.VITE_CURRENCY_API_KEY
 

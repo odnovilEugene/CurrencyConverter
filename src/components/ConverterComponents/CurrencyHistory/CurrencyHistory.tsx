@@ -1,10 +1,10 @@
-import s from "components/ConverterPage/CurrencyHistory/CurrencyHistory.module.scss"
+import s from "components/ConverterComponents/CurrencyHistory/CurrencyHistory.module.scss"
 
 const CurrencyHistory = () => {
     return (
         <div className={s.wrapper}>
             <div className={s.inner}>
-                CurrencyHosts
+                CurrencyHistory
             </div>
         </div>
     );

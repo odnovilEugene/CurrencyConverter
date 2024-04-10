@@ -1,4 +1,4 @@
-import s from "components/ConverterPage/CurrencyCosts/CurrencyCosts.module.scss"
+import s from "components/ConverterComponents/CurrencyCosts/CurrencyCosts.module.scss"
 
 const CurrencyCosts = () => {
     return (
