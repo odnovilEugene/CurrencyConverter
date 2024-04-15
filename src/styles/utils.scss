@@ -1,0 +1,42 @@
+@use "styles/vars";
+
+@mixin textRight {
+  text-align: right;
+}
+
+@mixin textLeft {
+  text-align: left;
+}
+
+@mixin transition() {
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+@mixin media-max-width($media) {
+  @media only screen and (max-width: #{$media}) {
+    @content;
+  }
+}
+
+@mixin media-min-width($media) {
+  @media only screen and (min-width: #{$media}) {
+    @content;
+  }
+}
+
+@mixin container {
+  max-width: 1200px;
+  padding: 50px;
+
+  @include media-max-width(vars.$laptop) {
+    padding: 15px;
+  }
+
+  @include media-max-width(vars.$mobileL) {
+    padding: 10px 0;
+  }
+}

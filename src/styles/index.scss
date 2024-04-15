@@ -1,0 +1,29 @@
+@use "styles/vars";
+@import "styles/normalize";
+
+
+html, body, #root {
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 50px;
+  background: vars.$gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
