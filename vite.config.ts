@@ -12,13 +12,20 @@ export default defineConfig({
       "components": `${path.resolve(__dirname, "./src/components/")}`,
       "public": `${path.resolve(__dirname, "./public/")}`,
       "pages": `${path.resolve(__dirname, "./src/pages")}`,
-      "types": `${path.resolve(__dirname, "./src/@types")}`,
+      "types": `${path.resolve(__dirname, "./src/types")}`,
+      "styles": `${path.resolve(__dirname, "./src/styles")}`,
     },
   },
   css: {
     modules: {
       localsConvention: "camelCaseOnly",
-      generateScopedName: `[name]_[local]_[hash:base64:5]`,
+      generateScopedName: function (name, filename, css) {
+        const i = css.indexOf("." + name);
+        const line = css.substr(0, i).split(/[\r\n]/).length;
+        const file = path.basename(filename).replace('.module', '').replace('.scss', '');
+
+        return file + "_" + line + "_" + name;
+      },
     }
   }
 })
