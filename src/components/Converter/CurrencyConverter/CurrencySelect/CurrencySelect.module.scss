@@ -1,0 +1,79 @@
+@use "styles/utils";
+@use "styles/vars";
+
+
+$currencyWidth: 97px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .currency {
+    width: $currencyWidth;
+
+    @include utils.transition();
+
+    .searchBox {
+      width: calc($currencyWidth - 20px);
+      padding: 5px 10px;
+    }
+
+    h3 {
+      width: 100%;
+      cursor: pointer;
+      font-size: 40px;
+
+      &:hover {
+        background: vars.$gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  .options {
+    position: absolute;
+    //min-width: 300px;
+    max-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 1px solid black;
+    margin-top: 40px;
+    min-width: $currencyWidth;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .option {
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background: vars.$lightergrey;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    };
+
+    &::-webkit-scrollbar-thumb {
+      background: black;
+    };
+
+    &::-webkit-scrollbar-track {
+      background: black;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      background-clip: padding-box;
+    };
+
+    &.hide {
+      visibility: hidden;
+    }
+  }
+}
