@@ -1,8 +1,9 @@
 import {createStore, createEvent, sample} from 'effector';
 import {$rate} from "@/store/rate.ts";
+import {useUnit} from "effector-react";
 
 export const valueFromInputChanged = createEvent<number>()
-export const setValueFrom = createEvent<number>()
+const setValueFrom = createEvent<number>()
 
 export const $valueFrom =
     createStore<number>(0)
@@ -14,7 +15,7 @@ export const $valueFrom =
 // })
 
 export const valueToInputChanged = createEvent<number>()
-export const setValueTo = createEvent<number>()
+const setValueTo = createEvent<number>()
 
 export const $valueTo =
     createStore<number>(0)
@@ -49,3 +50,8 @@ sample({
     target: setValueFrom,
 })
 
+
+export const useValues = () => useUnit({
+    valueFrom: $valueFrom,
+    valueTo: $valueTo
+})

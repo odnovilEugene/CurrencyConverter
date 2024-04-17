@@ -1,10 +1,11 @@
 @use 'styles/utils';
 
-.input, input[type=number] {
+.input, .input[type=number] {
 
   width: 100%;
   padding: 0 1.5rem;
   height: 5rem;
+  @include utils.transition();
 
   border: none;
   border-radius: 5px;
@@ -21,6 +22,4 @@
   &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
     -webkit-appearance: none;
   }
-
-  @include utils.transition();
 }

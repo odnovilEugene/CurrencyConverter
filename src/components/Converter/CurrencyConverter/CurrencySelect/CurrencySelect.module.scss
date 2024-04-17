@@ -3,77 +3,84 @@
 
 
 $currencyWidth: 97px;
+$currencyHeight: 50px;
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
-  .currency {
-    width: $currencyWidth;
+.currency {
+  height: $currencyHeight;
+  width: $currencyWidth;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  @include utils.gradient(left);
+}
 
-    @include utils.transition();
+.searchBox {
+  width: calc($currencyWidth - 20px);
+  padding: 5px 10px;
+  @include utils.transition;
+}
 
-    .searchBox {
-      width: calc($currencyWidth - 20px);
-      padding: 5px 10px;
-    }
+.optionTitle {
+  width: 100%;
+  cursor: pointer;
+  font-size: 40px;
+  text-align: center;
+  color: white;
 
-    h3 {
-      width: 100%;
-      cursor: pointer;
-      font-size: 40px;
-
-      &:hover {
-        background: vars.$gradient;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
+  &:hover {
+    @include utils.gradient(right);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+}
 
-  .options {
-    position: absolute;
-    //min-width: 300px;
-    max-height: 200px;
+.options {
+  position: absolute;
+  max-height: 200px;
 
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border: 1px solid black;
-    margin-top: 40px;
-    min-width: $currencyWidth;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid black;
+  margin-top: calc($currencyHeight + 1px);
+  min-width: $currencyWidth;
 
-    overflow-x: hidden;
-    overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
-    .option {
-      width: 100%;
-      padding: 10px;
-      cursor: pointer;
+  &::-webkit-scrollbar {
+    width: 7px;
+  };
 
-      &:hover {
-        background: vars.$lightergrey;
-      }
-    }
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  };
 
-    &::-webkit-scrollbar {
-      width: 7px;
-    };
+  &::-webkit-scrollbar-track {
+    background: black;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    background-clip: padding-box;
+  };
 
-    &::-webkit-scrollbar-thumb {
-      background: black;
-    };
+  &.hide {
+    visibility: hidden;
+  }
+}
 
-    &::-webkit-scrollbar-track {
-      background: black;
-      border-left: 3px solid transparent;
-      border-right: 3px solid transparent;
-      background-clip: padding-box;
-    };
+.option {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
 
-    &.hide {
-      visibility: hidden;
-    }
+  &:hover {
+    background: vars.$light-grey-2;
   }
 }

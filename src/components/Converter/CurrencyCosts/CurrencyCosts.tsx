@@ -48,8 +48,8 @@ const CurrencyCosts = () => {
                 <div className={s.currencyCosts}>
                     <div className={s.converter}>
                         <div className={s.titles}>
-                            <h3>{currencyFrom.code}</h3>
-                            <h3>{currencyTo.code}</h3>
+                            <h3 className={s.subtitle}>{currencyFrom.code}</h3>
+                            <h3 className={s.subtitle}>{currencyTo.code}</h3>
                         </div>
                         <div className={s.rateList}>
                             {units?.map((item, index) => (
@@ -65,8 +65,8 @@ const CurrencyCosts = () => {
                     </div>
                     <div className={s.converter}>
                         <div className={s.titles}>
-                            <h3>{currencyTo.code}</h3>
-                            <h3>{currencyFrom.code}</h3>
+                            <h3 className={s.subtitle}>{currencyTo.code}</h3>
+                            <h3 className={s.subtitle}>{currencyFrom.code}</h3>
                         </div>
                         <div className={s.rateList}>
                             {units?.map((item, index) => (

@@ -2,17 +2,16 @@ import s from "components/Converter/CurrencyConverter/CurrencyConverter.module.s
 import {Currency} from "types/Currency.ts";
 import {useUnit} from "effector-react";
 import {
-    $currencyFrom,
-    $currencyTo,
     currencyFromSelected,
     currencyToSelected,
-    setSwitched
+    useCurrencies,
+    setIsSwitched,
 } from "@/store/currency.ts";
-import {$valueFrom, $valueTo, valueFromInputChanged, valueToInputChanged,} from "@/store/value.ts";
+import {useValues, valueFromInputChanged, valueToInputChanged,} from "@/store/value.ts";
 import CurrencyInput from "components/Converter/CurrencyConverter/CurrencyInput/CurrencyInput.tsx";
 import {$rate}from "@/store/rate.ts";
 import CurrencySelect from "components/Converter/CurrencyConverter/CurrencySelect/CurrencySelect.tsx";
-import {GoArrowSwitch} from "react-icons/go";
+import {GoArrowSwitch as GASIcon} from "react-icons/go";
 import {clsx} from "clsx";
 import {useState} from "react";
 
@@ -22,19 +21,19 @@ const CurrencyConverter = ({
     currencies: Currency[],
 }) => {
 
-    const [currencyFrom, setCurrencyFrom] = useUnit([$currencyFrom, currencyFromSelected])
-    const [currencyTo,  setCurrencyTo] = useUnit([$currencyTo, currencyToSelected])
+    const { currencyFrom, currencyTo } = useCurrencies()
+    const [setCurrencyFrom, setCurrencyTo] = useUnit([currencyFromSelected, currencyToSelected])
 
-    const [valueFrom, handleInputFrom] = useUnit([$valueFrom, valueFromInputChanged ])
-    const [valueTo, handleInputTo] = useUnit([$valueTo, valueToInputChanged])
+    const { valueFrom, valueTo } = useValues()
+    const [handleInputFrom, handleInputTo] = useUnit([valueFromInputChanged, valueToInputChanged])
 
-    const [rotate, setRotate] = useState<boolean>(false)
+    const [isRotating, setIsRotating] = useState<boolean>(false)
 
     const rate = useUnit($rate)
 
     const handleSwitch = () => {
-        setRotate((prev) => !prev)
-        setSwitched(true)
+        setIsRotating((prev) => !prev)
+        setIsSwitched(true)
         currencyFromSelected(currencyTo)
         currencyToSelected(currencyFrom)
         handleInputFrom(valueTo)
@@ -45,7 +44,7 @@ const CurrencyConverter = ({
         if (currency.code === currencyTo.code) {
             handleSwitch()
         } else {
-            setSwitched(false)
+            setIsSwitched(false)
             setCurrencyFrom(currency)
         }
     }
@@ -54,7 +53,7 @@ const CurrencyConverter = ({
         if (currency.code === currencyFrom.code) {
             handleSwitch()
         } else {
-            setSwitched(false)
+            setIsSwitched(false)
             setCurrencyTo(currency)
         }
     }
@@ -74,11 +73,11 @@ const CurrencyConverter = ({
                         />
                     </div>
                     <div className={s.rateToOne}>
-                        {`1 ${currencyFrom.code} = ${(rate).toFixed(2)} ${currencyTo.code}`}
+                        {`1 ${currencyFrom.code} = ${rate.toFixed(2)} ${currencyTo.code}`}
                     </div>
                 </div>
-                <div className={clsx(s.switchContainer, rotate ? s.rotate : '')}>
-                    <GoArrowSwitch
+                <div className={clsx(s.switchContainer, isRotating ? s.isRotating : '')}>
+                    <GASIcon
                         className={s.switch}
                         onClick={handleSwitch}
                     />

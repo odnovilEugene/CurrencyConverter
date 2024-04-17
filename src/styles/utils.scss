@@ -8,7 +8,7 @@
   text-align: left;
 }
 
-@mixin transition() {
+@mixin transition {
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
@@ -29,14 +29,10 @@
 }
 
 @mixin container {
-  max-width: 1200px;
-  padding: 50px;
+  width: 1200px;
+  max-width: 95%;
+}
 
-  @include media-max-width(vars.$laptop) {
-    padding: 15px;
-  }
-
-  @include media-max-width(vars.$mobileL) {
-    padding: 10px 0;
-  }
+@mixin gradient($direction) {
+  background: linear-gradient(to #{$direction}, #30cfd0 0%, #330867 100%);
 }

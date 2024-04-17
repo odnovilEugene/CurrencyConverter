@@ -1,5 +1,17 @@
 import {createStore, createEvent} from 'effector';
-import {Currency, initialFrom, initialTo} from "@/types/Currency.ts";
+import {Currency} from "@/types/Currency.ts";
+import {useUnit} from "effector-react";
+
+
+export const initialFrom: Currency = {
+    code: "USD"
+}
+
+export const initialTo: Currency = {
+    code: "RUB"
+}
+
+
 export const currencyFromSelected = createEvent<Currency>();
 
 
@@ -23,9 +35,14 @@ export const $currencyTo =
 // })
 
 
-export const setSwitched = createEvent<boolean>()
+export const setIsSwitched = createEvent<boolean>()
 
-export const $switched =
-    createStore<boolean | null>(null)
-        .on(setSwitched, (_, state) => state)
+export const $isSwitched =
+    createStore<boolean>(false)
+        .on(setIsSwitched, (_, state) => state)
 
+
+export const useCurrencies = () => useUnit({
+    currencyFrom: $currencyFrom,
+    currencyTo: $currencyTo
+})

@@ -1,13 +1,16 @@
 @use "styles/vars";
 @import "styles/normalize";
 
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
 html, body, #root {
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   width: 100%;
-  height: fit-content;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 input {

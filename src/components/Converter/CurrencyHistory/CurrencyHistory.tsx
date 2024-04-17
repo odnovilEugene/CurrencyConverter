@@ -27,7 +27,7 @@ const CurrencyHistory: FC<{
                     <h2>Chart</h2>
                 </div>
                 <div className={s.chart}>
-                    <ResponsiveContainer width={'100%'} minHeight={400}>
+                    <ResponsiveContainer aspect={16 / 9}>
                         <LineChart
                             data={chartData}>
                             <XAxis/>

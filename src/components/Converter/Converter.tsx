@@ -1,13 +1,14 @@
-import {FC, useState} from "react";
-import s from "components/Converter/Converter.module.scss";
+import {FC, useEffect, useState} from "react";
+import s from "components/Converter/Converter.module.scss"
 import CurrencyConverter from "components/Converter/CurrencyConverter/CurrencyConverter.tsx";
 import CurrencyCosts from "components/Converter/CurrencyCosts/CurrencyCosts.tsx";
 import CurrencyHistory from "components/Converter/CurrencyHistory/CurrencyHistory.tsx";
-import {Currency, CurrencyDateRate, mockCurrencies, mockHistory} from "types/Currency.ts";
+import { Currency, CurrencyDateRate } from "types/Currency.ts"
+import { mockCurrencies, mockHistory } from "mock/index.ts";
 import {getAllCurrencies, getCurrencyRate} from "@/api/currencyApi.ts";
-import {$currencyFrom, $currencyTo, $switched} from "@/store/currency.ts";
+import {$isSwitched, currencyFromSelected, currencyToSelected, useCurrencies} from "@/store/currency.ts";
 import {useUnit} from "effector-react";
-import {$rate, setRate} from "@/store/rate.ts";
+import {setRate} from "@/store/rate.ts";
 import { clsx } from "clsx";
 
 const Converter: FC = () => {
@@ -16,38 +17,44 @@ const Converter: FC = () => {
     const [showHistory, setShowHistory] = useState<boolean>(true)
 
     const [currencies, setCurrencies] = useState<Currency[]>(mockCurrencies)
-    const [history, setHistory] = useState<CurrencyDateRate[]>(mockHistory)
+    const [history] = useState<CurrencyDateRate[]>(mockHistory)
 
-    const [currencyFrom, currencyTo] = useUnit([$currencyFrom, $currencyTo])
-    const switched = useUnit($switched)
+    const { currencyFrom, currencyTo } = useCurrencies()
+    const isSwitched = useUnit($isSwitched)
 
     // useEffect(() => {
     //     getAllCurrencies()
-    //         .then(r => setCurrencies(r))
+    //         .then(r => {
+    //             setCurrencies(r)
+    //             currencyFromSelected(r[0])
+    //             currencyToSelected(r[1])
+    //         })
     // }, [])
 
     // useEffect(() => {
-    //     if (!switched) {
-    //         getCurrenciesRate(currencyFrom, currencyTo)
-    //             .then(r => setRate(r))
+    //     if (!isSwitched) {
+    //         getCurrencyRate(currencyFrom, currencyTo)
+    //             .then(r => {
+    //                 setRate(r)
+    //             })
     //     }
-    // }, [switched])
+    // }, [currencyFrom, currencyTo])
 
     return (
         <div className={s.wrapper}>
             <div className={s.inner}>
                 <div className={s.displayButtons}>
                     <button
-                        className={showCosts ? s.active : ''}
+                        className={clsx(s.button, showCosts ? s.active : '')}
                         onClick={() => setShowCosts(!showCosts)}
                     >
-                        Show costs
+                        Show rates
                     </button>
                     <button
-                        className={showHistory ? s.active : ''}
+                        className={clsx(s.button, showHistory ? s.active : '')}
                         onClick={() => setShowHistory(!showHistory)}
                     >
-                        Show history
+                        Show costs
                     </button>
                 </div>
                 <div className={s.converter}>

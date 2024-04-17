@@ -4,78 +4,78 @@
 .wrapper {
   width: 100%;
   height: 100%;
+}
 
-  .inner {
-    display: flex;
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  @include utils.textLeft;
+  font-size: 50px;
+  background: vars.$gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.currencyCosts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+
+  @include utils.media-max-width(vars.$tablet) {
     flex-direction: column;
-    gap: 40px;
-
-    .title {
-      @include utils.textLeft;
-      h2 {
-        font-size: 50px;
-        background: vars.$gradient;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-
-    .currencyCosts {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 40px;
-
-      @include utils.media-max-width(vars.$tablet) {
-        flex-direction: column;
-      }
-
-      .converter{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        border-radius: 15px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-        padding-bottom: 40px;
-        .titles {
-          width: 100%;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          background: vars.$lightergrey;
-          h3 {
-            font-size: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-          }
-        }
-
-        .rateList {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-
-          .unitItem {
-            font-size: 14px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-
-            .currencyFrom, .currencyTo {
-              display: flex;
-              flex-direction: row;
-              justify-content: center;
-              gap: 5px;
-            }
-
-            .currencyFrom {
-              color: vars.$blue;
-            }
-          }
-        }
-      }
-    }
   }
+}
+
+.converter{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  padding-bottom: 40px;
+}
+
+.titles {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: vars.$light-grey-1;
+}
+
+.subtitle {
+  font-size: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.rateList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.unitItem {
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.currencyFrom, .currencyTo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+
+.currencyFrom {
+  color: vars.$blue;
 }
