@@ -30,7 +30,7 @@ const Converter: FC = () => {
                 setCurrencies(r)
             })
             .catch((e) => console.log(e))
-    }, [])
+    }, [setCurrencies])
 
     useEffect(() => {
         if (!isSwitched) {
@@ -40,7 +40,7 @@ const Converter: FC = () => {
                 })
                 .catch((e) => console.log(e))
         }
-    }, [currencyFrom, currencyTo])
+    }, [currencyFrom, currencyTo, isSwitched])
 
     return (
         <div className={s.wrapper}>

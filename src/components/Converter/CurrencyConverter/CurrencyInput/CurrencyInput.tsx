@@ -40,7 +40,7 @@ const CurrencyInput: FC<Props> = ({
         } else {
             setLocalValue(value.toString())
         }
-    }, [value])
+    }, [localValue, value])
 
     return (
         <input
