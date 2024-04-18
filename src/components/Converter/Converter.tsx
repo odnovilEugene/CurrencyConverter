@@ -3,68 +3,70 @@ import s from "components/Converter/Converter.module.scss"
 import CurrencyConverter from "components/Converter/CurrencyConverter/CurrencyConverter.tsx";
 import CurrencyCosts from "components/Converter/CurrencyCosts/CurrencyCosts.tsx";
 import CurrencyHistory from "components/Converter/CurrencyHistory/CurrencyHistory.tsx";
-import { Currency, CurrencyDateRate } from "types/Currency.ts"
-import { mockCurrencies, mockHistory } from "mock/index.ts";
+import { CurrencyDateRate } from "types/Currency.ts"
+import { mockHistory } from "mock/index.ts";
 import {getAllCurrencies, getCurrencyRate} from "@/api/currencyApi.ts";
-import {$isSwitched, currencyFromSelected, currencyToSelected, useCurrencies} from "@/store/currency.ts";
+import {$isSwitched, useCurrencies} from "@/store/currency.ts";
 import {useUnit} from "effector-react";
 import {setRate} from "@/store/rate.ts";
 import { clsx } from "clsx";
+import { currenciesFetched } from '@/store/currencyList.ts';
 
 const Converter: FC = () => {
 
-    const [showCosts, setShowCosts] = useState<boolean>(true)
-    const [showHistory, setShowHistory] = useState<boolean>(true)
+    const [isCostVisible, setIsCostVisible] = useState(true)
+    const [isHistoryVisible, setIsHistoryVisible] = useState(true)
 
-    const [currencies, setCurrencies] = useState<Currency[]>(mockCurrencies)
+    const setCurrencies = useUnit(currenciesFetched)
+
     const [history] = useState<CurrencyDateRate[]>(mockHistory)
 
     const { currencyFrom, currencyTo } = useCurrencies()
     const isSwitched = useUnit($isSwitched)
 
-    // useEffect(() => {
-    //     getAllCurrencies()
-    //         .then(r => {
-    //             setCurrencies(r)
-    //             currencyFromSelected(r[0])
-    //             currencyToSelected(r[1])
-    //         })
-    // }, [])
+    useEffect(() => {
+        getAllCurrencies()
+            .then(r => {
+                setCurrencies(r)
+            })
+            .catch((e) => console.log(e))
+    }, [])
 
-    // useEffect(() => {
-    //     if (!isSwitched) {
-    //         getCurrencyRate(currencyFrom, currencyTo)
-    //             .then(r => {
-    //                 setRate(r)
-    //             })
-    //     }
-    // }, [currencyFrom, currencyTo])
+    useEffect(() => {
+        if (!isSwitched) {
+            getCurrencyRate(currencyFrom, currencyTo)
+                .then(r => {
+                    setRate(r)
+                })
+                .catch((e) => console.log(e))
+        }
+    }, [currencyFrom, currencyTo])
 
     return (
         <div className={s.wrapper}>
             <div className={s.inner}>
                 <div className={s.displayButtons}>
                     <button
-                        className={clsx(s.button, showCosts ? s.active : '')}
-                        onClick={() => setShowCosts(!showCosts)}
+                        className={clsx(s.button, isCostVisible ? s.active : '')}
+                        onClick={() => setIsCostVisible(!isCostVisible)}
                     >
                         Show rates
                     </button>
                     <button
-                        className={clsx(s.button, showHistory ? s.active : '')}
-                        onClick={() => setShowHistory(!showHistory)}
+                        className={clsx(s.button, isHistoryVisible ? s.active : '')}
+                        onClick={() => setIsHistoryVisible(!isHistoryVisible)}
                     >
-                        Show costs
+                        Show Chart
                     </button>
                 </div>
                 <div className={s.converter}>
                     <div className={s.currencies}>
-                        <CurrencyConverter currencies={currencies}/>
+                        <CurrencyConverter />
                     </div>
-                    <div className={clsx(s.costs, !showCosts && s.hide)}>
+                    <div className={clsx(s.costs, !isCostVisible && s.hide)}>
                         <CurrencyCosts />
                     </div>
-                    <div className={clsx(s.history, !showHistory && s.hide)}>
+                    <div className={clsx(s.history, !isHistoryVisible && s.hide)}>
                         <CurrencyHistory history={history} />
                     </div>
                 </div>
