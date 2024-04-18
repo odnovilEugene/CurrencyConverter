@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: 16
 
+      - name: Display env var
+        run: |
+          echo "The api is ${{ env.VITE_CURRENCY_API_KEY }}
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
