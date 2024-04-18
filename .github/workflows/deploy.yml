@@ -19,15 +19,13 @@ jobs:
         with:
           node-version: 16
 
-      - name: Display env var
-        run: |
-          echo "The api is ${{ secrets.API_KEY }}"
-
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_CURRENCY_API_KEY: ${{ secrets.API_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
