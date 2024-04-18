@@ -14,6 +14,9 @@
 ## Пример
 ![img_1.png](public/screenshot.png)
 
+## Демо
+https://odnovileugene.github.io/CurrencyConverter/
+
 ## Технологии
 - React
 - Typescript
