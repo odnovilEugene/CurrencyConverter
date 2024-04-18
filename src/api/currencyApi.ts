@@ -1,9 +1,6 @@
 import axios from 'axios'
 import {Currency} from "@/types/Currency.ts";
 
-
-console.log(import.meta.env)
-
 const apiKey = import.meta.env.VITE_CURRENCY_API_KEY
 
 const baseUrl = `https://api.freecurrencyapi.com/v1/`
