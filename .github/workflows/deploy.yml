@@ -10,9 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    env:
-      VITE_CURRENCY_API_KEY: ${{ secrets.VITE_CURRENCY_API_KEY }}
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -27,6 +24,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_CURRENCY_API_KEY: ${{ secrets.VITE_CURRENCY_API_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
