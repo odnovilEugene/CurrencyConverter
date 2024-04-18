@@ -14,12 +14,11 @@ import CurrencySelect from "components/Converter/CurrencyConverter/CurrencySelec
 import {GoArrowSwitch as GASIcon} from "react-icons/go";
 import {clsx} from "clsx";
 import {useState} from "react";
+import { $currencyList } from '@/store/currencyList.ts';
 
-const CurrencyConverter = ({
-    currencies,
-}: {
-    currencies: Currency[],
-}) => {
+const CurrencyConverter = () => {
+
+    const currencyList = useUnit($currencyList)
 
     const { currencyFrom, currencyTo } = useCurrencies()
     const [setCurrencyFrom, setCurrencyTo] = useUnit([currencyFromSelected, currencyToSelected])
@@ -27,7 +26,7 @@ const CurrencyConverter = ({
     const { valueFrom, valueTo } = useValues()
     const [handleInputFrom, handleInputTo] = useUnit([valueFromInputChanged, valueToInputChanged])
 
-    const [isRotating, setIsRotating] = useState<boolean>(false)
+    const [isRotating, setIsRotating] = useState(false)
 
     const rate = useUnit($rate)
 
@@ -64,7 +63,7 @@ const CurrencyConverter = ({
                 <div className={s.currencyBlock}>
                     <div className={s.controllers}>
                         <CurrencySelect currency={currencyFrom}
-                                        currencies={currencies}
+                                        currencies={currencyList}
                                         handleSelect={handleSelectFrom}
                         />
                         <CurrencyInput
@@ -89,7 +88,7 @@ const CurrencyConverter = ({
                             valueSelected={handleInputTo}
                         />
                         <CurrencySelect currency={currencyTo}
-                                        currencies={currencies}
+                                        currencies={currencyList}
                                         handleSelect={handleSelectTo}
                         />
                     </div>
