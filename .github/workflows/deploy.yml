@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  VITE_CURRENCY_API_KEY : ${{ secrets.VITE_CURRENCY_API_KEY }}
+
 jobs:
   build:
     name: Build
