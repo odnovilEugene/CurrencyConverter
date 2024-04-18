@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+#Конвертер валют
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание задачи
+Создать интерфейс приложения конвертера валют с загрузкой актуальных данных по API, возможностью просмотра истории курсов валют и простой настройкой интерфейса.
 
-Currently, two official plugins are available:
+## Развертывание
+1. npm i
+2. создать файл .env
+3. зайти на сайт https://app.freecurrencyapi.com/, зарегистрироваться и скопировать api ключ
+4. вставить ключ в .env по примеру .env.example
+5. npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Пример
+![img_1.png](public/screenshot.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Технологии
+- React
+- Typescript
+- Effector
+- CSS Modules
+- SCSS
+- Recharts - отрисовка графика
 
-- Configure the top-level `parserOptions` property like this:
+## Решение и Особенности
+Для получения актуальных данных о валютах был использован сервис https://app.freecurrencyapi.com/
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Возможность получения истории конвертации была убрана
+из бесплатных версий просмотренных мной апи, поэтому для графика в моем проекте
+используются шаблонные данные, находящиеся в /src/mock
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Интерфейс приложения адаптирован под мобильные устройства.
