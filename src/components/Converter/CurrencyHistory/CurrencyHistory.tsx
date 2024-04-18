@@ -4,7 +4,7 @@ import {FC} from "react";
 import { CurrencyDateRate} from "types/Currency.ts";
 
 type ChartData = CurrencyDateRate & {
-    day: string
+    monthDay: string
 }
 
 const CurrencyHistory: FC<{
@@ -16,7 +16,7 @@ const CurrencyHistory: FC<{
     const chartData: ChartData[] = history?.map((item): ChartData => {
         return {
             ...item,
-            day: item.date.slice(-2)
+            monthDay: item.date.slice(-5)
         }
     })
 
@@ -30,7 +30,7 @@ const CurrencyHistory: FC<{
                     <ResponsiveContainer aspect={16 / 9}>
                         <LineChart
                             data={chartData}>
-                            <XAxis/>
+                            <XAxis dataKey='monthDay'/>
                             <YAxis
                                 domain={['auto', 'auto']}
                             />

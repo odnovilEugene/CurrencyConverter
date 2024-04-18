@@ -16,10 +16,12 @@ const CurrencySelect: FC<{
 }) => {
 
     const divRef = useRef(null)
-
-    const [isOptionsVisible, setIsOptionsVisible] = useState<boolean>(false)
-    const [currenciesToShow, setCurrenciesToShow] = useState<Currency[]>(currencies)
     useOutsideClick(divRef, () => setIsOptionsVisible(false))
+
+    const [isOptionsVisible, setIsOptionsVisible] = useState(false)
+
+    const [currenciesToShow, setCurrenciesToShow] = useState<Currency[]>(currencies)
+
 
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const foundCurrencies = currencies.filter((value) =>

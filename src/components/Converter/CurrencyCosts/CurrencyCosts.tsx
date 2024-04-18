@@ -1,11 +1,11 @@
 import s from "components/Converter/CurrencyCosts/CurrencyCosts.module.scss"
 import {useUnit} from "effector-react/effector-react.umd";
 import {$rate} from "@/store/rate.ts";
-import {$currencyFrom, $currencyTo} from "@/store/currency.ts";
+import { useCurrencies } from '@/store/currency.ts';
 import {FC} from "react";
 import {Currency} from "types/Currency.ts";
 
-const units = [1, 5, 10, 25, 50, 100, 500, 1000, 5000]
+const units: number[] = [1, 5, 10, 25, 50, 100, 500, 1000, 5000]
 
 const UnitItem: FC<{
     item: number,
@@ -37,7 +37,7 @@ const CurrencyCosts = () => {
 
     const rate = useUnit($rate)
 
-    const [currencyFrom, currencyTo] = useUnit([$currencyFrom, $currencyTo])
+    const {currencyFrom, currencyTo} = useCurrencies()
 
     return (
         <div className={s.wrapper}>
