@@ -8,9 +8,6 @@ export const $rate =
     createStore<number>(mockRate)
         .on(setRate, (_, value) => value)
 
-// $rate.watch((state) => {
-//     console.log(state)
-// })
 
 sample({
     clock: setIsSwitched,

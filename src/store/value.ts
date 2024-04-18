@@ -6,25 +6,18 @@ export const valueFromInputChanged = createEvent<number>()
 const setValueFrom = createEvent<number>()
 
 export const $valueFrom =
-    createStore<number>(0)
+    createStore(0)
         .on(valueFromInputChanged, (_, value) => value)
         .on(setValueFrom, (_, value) => value)
 
-// $valueFrom.watch((state) => {
-//     console.log(state)
-// })
 
 export const valueToInputChanged = createEvent<number>()
 const setValueTo = createEvent<number>()
 
 export const $valueTo =
-    createStore<number>(0)
+    createStore(0)
         .on(valueToInputChanged, (_, value) => value)
         .on(setValueTo, (_, value) => value)
-
-// $valueTo.watch((state) => {
-//     console.log(state)
-// })
 
 sample({
     clock: valueFromInputChanged,
