@@ -23,7 +23,7 @@ jobs:
 
       - name: Display env var
         run: |
-          echo "The api is ${{ env.VITE_CURRENCY_API_KEY }}
+          echo "The api is ${{ env.VITE_CURRENCY_API_KEY }}"
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
