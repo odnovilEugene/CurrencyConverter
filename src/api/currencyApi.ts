@@ -1,9 +1,8 @@
 import axios from 'axios'
 import {Currency} from "@/types/Currency.ts";
 
-const apiKey: string | undefined = import.meta.env.VITE_CURRENCY_API_KEY
+const apiKey = import.meta.env.VITE_CURRENCY_API_KEY
 
-// const baseUrl = `https://api.currencyapi.com/v3/`
 const baseUrl = `https://api.freecurrencyapi.com/v1/`
 export const getAllCurrencies = async () => {
 
